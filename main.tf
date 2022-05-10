@@ -6,9 +6,19 @@ terraform {
     }
   }
 }
+variable "profile" {
+  description = "IAM User,keys to deploy the cloud resources to amazon."
+  type = string
+}
+
+variable "region" {
+  description = "Region to deploy cloud resources."
+  type = string
+}
+
 provider "aws" {
-  profile = "default"
-  region  = "us-east-2"
+  profile = var.profile
+  region  = var.region
 }
 
 resource "aws_instance" "app_server" {
